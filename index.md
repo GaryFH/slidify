@@ -73,7 +73,7 @@ em {
 -  ***The Data Scientist refers to  the rows as "Observations" and the columns as "Variables".***  
 If you wanted to investigate what influences "price" - then the ***price*** variable would be the ***dependent*** variable and the other variables would be known as ***predictors/independent*** variables.
 
-<img src="assets/fig/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 ---
 
@@ -83,7 +83,7 @@ If you wanted to investigate what influences "price" - then the ***price*** vari
 -  ***No matter how the data begins - it is important that it is eventually converted into the "spreadsheet" like format.***
 
 
-<img src="assets/fig/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 
 ---
@@ -118,7 +118,7 @@ If you wanted to investigate what influences "price" - then the ***price*** vari
 - ***Note new variables x, y and z - As an example: Subject experts know that the depth variable is calculated from x,y&z***
 
 
-<img src="assets/fig/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 
 ---
@@ -128,7 +128,7 @@ If you wanted to investigate what influences "price" - then the ***price*** vari
 - ***Subject Experts should carefully consider the variables and be prepared to discuss eliminating redundant columns.***
 
 
-<img src="assets/fig/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 ---
 
@@ -138,7 +138,7 @@ If you wanted to investigate what influences "price" - then the ***price*** vari
 - Running custom code gives a table showing correlation between depth and x,y&z
 
 
-<img src="assets/fig/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 ---
 
@@ -147,14 +147,14 @@ If you wanted to investigate what influences "price" - then the ***price*** vari
 Since x,y&z were shown to be highly correlated to depth - they are removed from the dataframe.   We look at the other potential variables to see if strong correlations exist. Note the correlations are relativel low - therefore all these variables are not removed.
 
 
-<img src="assets/fig/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 ---
 
 ## Step 2: Initial Data Prep - Plot Example
 
 
-<img src="assets/fig/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /><img src="assets/fig/unnamed-chunk-10-2.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /><img src="figure/unnamed-chunk-10-2.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 ---
 
@@ -192,15 +192,15 @@ Since x,y&z were shown to be highly correlated to depth - they are removed from 
 
 
 ```
-## [1] "The Mean Absolute Error for carat only variable is: 1029.21"
+## [1] "The Mean Absolute Error for carat only variable is: 1013.06"
 ```
 
 ```
-## [1] "The Mean Absolute Error for all variables is: 860.70"
+## [1] "The Mean Absolute Error for all variables is: 856.23"
 ```
 
 ```
-## [1] "The Mean Absolute Error for fitbest variables is: 759.96"
+## [1] "The Mean Absolute Error for fitbest variables is: 755.58"
 ```
 
 ---
@@ -366,7 +366,7 @@ https://garyfh.shinyapps.io/squelch20e/
 
 - ***Statistical Analysis gives list of 'Important and Not Important Variables***
 
-<img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
 
 ---
 
@@ -374,7 +374,7 @@ https://garyfh.shinyapps.io/squelch20e/
 
 - ***You can plot the important variables***
 
-<img src="assets/fig/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" />
 
 ---
 
