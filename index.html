@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DataScienceOverview</title>
+  <meta charset="utf-8">
+  <meta name="description" content="DataScienceOverview">
+  <meta name="author" content="GaryFH">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>DataScienceOverview</h1>
+    <h2></h2>
+    <p>GaryFH<br/>Presentation</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+strong {
+  font-weight: bold;
+}
+</style>
+  
+
+<style>
+em {
+  font-style: italic
+}
+</style>
+
+<h2>Step 1:  Form of Data</h2>
+
+<ul>
+<li> <strong><em>Data Science is most effectively used for data sets that have a number of identifiable &quot;Observations&quot; where each observation share the same parameters/columns.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Step 1:  Form of Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Data Science is most effectively used for data sets that have a number of identifiable &quot;Observations&quot; or &quot;Subjects&quot; where each observation/subject shares  a number of common &quot;data points&quot;.</p></li>
+<li><p><strong><em>An ideal form for such data is a spreadsheet with the rows being the individual observations and the columns the common data points.</em></strong></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Step 1:  Form of Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li> <strong><em>An ideal form for such data is a spreadsheet with the rows being individual observations/subjects and the columns the common data points.   - The following is an example</em></strong></li>
+</ul>
+
+<pre><code>## # A tibble: 8 x 7
+##   carat cut       color clarity depth table price
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 0.23  Ideal     E     SI2      61.5    55   326
+## 2 0.21  Premium   E     SI1      59.8    61   326
+## 3 0.23  Good      E     VS1      56.9    65   327
+## 4 0.290 Premium   I     VS2      62.4    58   334
+## 5 0.31  Good      J     SI2      63.3    58   335
+## 6 0.24  Very Good J     VVS2     62.8    57   336
+## 7 0.24  Very Good I     VVS1     62.3    57   336
+## 8 0.26  Very Good H     SI1      61.9    55   337
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Step 1:  Form of Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li> <strong><em>The Data Scientist refers to  the rows as &quot;Observations&quot; and the columns as &quot;Variables&quot;.</em></strong><br>
+If you wanted to investigate what influences &quot;price&quot; - then the <strong><em>price</em></strong> variable would be the <strong><em>dependent</em></strong> variable and the other variables would be known as <strong><em>predictors/independent</em></strong> variables.</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Step 1:  Form of Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li> <strong><em>No matter how the data begins - it is important that it is eventually converted into the &quot;spreadsheet&quot; like format.</em></strong></li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Step 1:  Form of Data Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 53,940 x 7
+##    carat cut       color clarity depth table price
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+##  1 0.23  Ideal     E     SI2      61.5    55   326
+##  2 0.21  Premium   E     SI1      59.8    61   326
+##  3 0.23  Good      E     VS1      56.9    65   327
+##  4 0.290 Premium   I     VS2      62.4    58   334
+##  5 0.31  Good      J     SI2      63.3    58   335
+##  6 0.24  Very Good J     VVS2     62.8    57   336
+##  7 0.24  Very Good I     VVS1     62.3    57   336
+##  8 0.26  Very Good H     SI1      61.9    55   337
+##  9 0.22  Fair      E     VS2      65.1    61   337
+## 10 0.23  Very Good H     VS1      59.4    61   338
+## # ... with 53,930 more rows
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Step 2: Initial Data Prep</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Effective use of Data Science requires close cooperation between the &quot;Subject Experts&quot; (often considered the clients of the Data Scientist) and the Data Scientist.</li>
+<li><strong><em>Note new variables x, y and z - As an example: Subject experts know that the depth variable is calculated from x,y&amp;z</em></strong></li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Step 2: Initial Data Prep</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>Subject Experts should carefully consider the variables and be prepared to discuss eliminating redundant columns.</em></strong></li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Step 2: Initial Data Prep - eliminating redundant variables</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Running custom code gives a table showing correlation between depth and x,y&amp;z</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Step 2: Initial Data Prep - eliminating redundant variables cont.</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Since x,y&amp;z were shown to be highly correlated to depth - they are removed from the dataframe.   We look at the other potential variables to see if strong correlations exist. Note the correlations are relativel low - therefore all these variables are not removed.</p>
+
+<p><img src="assets/fig/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Step 2: Initial Data Prep - Plot Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /><img src="assets/fig/unnamed-chunk-10-2.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Step 2: Initial Data Prep - Example of stats</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## [1] &quot;The AdjustRsq using only the carat variable is: 0.85&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;The AdjustRsq using all variables is: 0.90&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;The AdjustRsq using bestfit variables is: 0.93&quot;
+</code></pre>
+
+<pre><code>## price ~ carat + clarity + color + cut + table + depth + carat:clarity + 
+##     carat:color + clarity:color + carat:cut + clarity:cut + carat:table + 
+##     clarity:table + carat:depth + cut:depth + cut:table + table:depth + 
+##     color:table + carat:clarity:color + carat:clarity:cut + carat:cut:depth + 
+##     carat:table:depth + cut:table:depth + carat:cut:table + clarity:cut:table + 
+##     carat:clarity:table + carat:color:table + carat:cut:table:depth + 
+##     carat:clarity:cut:table
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Step 2: Initial Data Prep - Another example of stats</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## [1] &quot;The Mean Absolute Error for carat only variable is: 1029.21&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;The Mean Absolute Error for all variables is: 860.70&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;The Mean Absolute Error for fitbest variables is: 759.96&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Step 3:  Questions/Goals</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.</em></strong> </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Step 3:  Questions/Goals</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.<br></li>
+<li><strong><em>It is true that the data dictates which questions can be answered and to what degree of certainty,   however knowing where to start can save a lot of time.</em></strong> </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Step 3:  Questions/Goals</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.<br></li>
+<li>It is true that the data dictates which questions can be answered and to what degree of certainty,   however knowing where to start can save a lot of time. </li>
+<li><strong><em>Note that the data science process often produces better questions than initially envisioned and some Data Science is pursued without initially having any specific questions in mind in an attempt to see what the data might reveal.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Step 3:  Questions/Goals</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.<br></li>
+<li>It is true that the data dictates which questions can be answered and to what degree of certainty,   however knowing where to start can save a lot of time. </li>
+<li>Note that the data science process often produces better questions than initially envisioned and some Data Science is pursued without initially having any specific questions in mind in an attempt to see what the data might reveal.<br></li>
+<li><strong><em>Initial questions are often general in nature and subject to modification as data is looked at.    Examples of questions could include: &quot;what is causing the errors?&quot; or &quot;which firmware performs best?&quot; or &quot;how does the performance change overtime?.</em></strong><br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Step 4: What to expect</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="https://garyfh.shinyapps.io/squelch20e/">https://garyfh.shinyapps.io/squelch20e/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Step 4: What to Expect</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 35,999 x 39
+##    ID    testcase ctrl_id sequence_num drive_slot serial link  dev_name
+##    &lt;fct&gt; &lt;fct&gt;      &lt;int&gt;        &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;  &lt;fct&gt; &lt;fct&gt;   
+##  1 1     Z284cb1        0            0 1          BTLD7~ 8 GT~ nvme8   
+##  2 2     Z284cb1        0            0 2          BTLD7~ 8 GT~ nvme9   
+##  3 3     Z284cb1        0            0 3          PHLD7~ 8 GT~ nvme10  
+##  4 4     Z284cb1        0            0 4          BTLD7~ 8 GT~ nvme11  
+##  5 5     Z284cb1        0            0 5          PHLD7~ 8 GT~ nvme4   
+##  6 6     Z284cb1        0            0 6          BTLD7~ 8 GT~ nvme5   
+##  7 7     Z284cb1        0            0 7          BTLD7~ 8 GT~ nvme6   
+##  8 8     Z284cb1        0            0 8          BTLD7~ 8 GT~ nvme7   
+##  9 9     Z284cb1        0            0 9          PHLD7~ 8 GT~ nvme0   
+## 10 10    Z284cb1        0            0 10         BTLD7~ 8 GT~ nvme1   
+## # ... with 35,989 more rows, and 31 more variables: bdf &lt;fct&gt;,
+## #   Upstream.status &lt;fct&gt;, Upstream.un_err &lt;fct&gt;, Upstream.cor_err &lt;fct&gt;,
+## #   Upstream.frm &lt;fct&gt;, SSD.status &lt;fct&gt;, SSD.un_err &lt;fct&gt;,
+## #   SSD.cor_err &lt;fct&gt;, Upstream.lane.0 &lt;fct&gt;, Upstream.lane.1 &lt;fct&gt;,
+## #   SSD.lane.0 &lt;fct&gt;, SSD.lane.1 &lt;fct&gt;, hostname &lt;fct&gt;, beforeIO &lt;fct&gt;,
+## #   fio.runtime &lt;dbl&gt;, Up.bad.dllp &lt;dbl&gt;, Up.bad.tlp &lt;dbl&gt;,
+## #   Up.port.err &lt;dbl&gt;, UpstreamREC &lt;dbl&gt;, HexSum &lt;dbl&gt;, RateUp &lt;dbl&gt;,
+## #   RateSSD &lt;dbl&gt;, ComboErr &lt;dbl&gt;, errortype2 &lt;dbl&gt;, Errortype &lt;fct&gt;,
+## #   errortype1 &lt;dbl&gt;, ErrortypeB &lt;fct&gt;, UpLaneTot &lt;chr&gt;, SSDLaneTot &lt;chr&gt;,
+## #   UpLaneErr &lt;dbl&gt;, SSDLaneErr &lt;dbl&gt;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Step 4: What to Expect - create new variables</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## [1] &quot;Variable called Upstream.lane.0 =  0x80003906-P5&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;5th&amp;6th elements converted to dec - uplane0a= 0&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;7th&amp;8th elements converted to dec - uplane0b= 57&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;9th&amp;10th elements converted to dec - uplane0c= 6&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Step 5:  Report type.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>During the process of working with the data,  numerous reports will be available - initially these are &quot;working&quot; documents whose purpose is to guide the team toward their goals.    The Data Scientist should maintain these reports and avoid writing over previous reports so that prior reports are always available.</em></strong><br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Step 5:  Report type.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>During the process of working with the data,  numerous reports will be available - initially these are &quot;working&quot; documents whose purpose is to guide the team toward their goals.    The Data Scientist should maintain these reports and avoid writing over previous reports so that prior reports are always available.<br></li>
+<li><strong><em>The need to provide interested parties with the ability to closely examine the data as the process unfolds often results in reports that are layered from overview charts down to detailed tables/plots.  Rarely does one chart/plot/table exist that provides what is needed exist.   Different report users will have multiple questions they want to investigate - thus &quot;one size&quot; does not fit all.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Step 5:  Report type.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>During the process of working with the data,  numerous reports will be available - initially these are &quot;working&quot; documents whose purpose is to guide the team toward their goals.    The Data Scientist should maintain these reports and avoid writing over previous reports so that prior reports are always available.   </p></li>
+<li><p>The need to provide interested parties with the ability to closely examine the data as the process unfolds often results in reports that are layered from overview charts down to detailed tables/plots.  Rarely does one chart/plot/table exist that provides what is needed exist.   Different report users will have multiple questions they want to investigate - thus &quot;one size&quot; does not fit all.</p></li>
+<li><p><strong><em>Publishing reports so that the team members can interact with the data and look at as much detail as they desire is important.   Thus,  interactive graphs/tables/plots are important.</em></strong></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Step 6:  Statistics.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Step 6:  Statistics - Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>Lets look at a dataset of bank customers with the goal of finding out why customers leave the bank</em></strong></li>
+</ul>
+
+<pre><code>## # A tibble: 10,000 x 11
+##    Exited CreditScore Geography Gender   Age Tenure Balance NumOfProducts
+##    &lt;fct&gt;        &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;   &lt;dbl&gt;         &lt;int&gt;
+##  1 1              619         1      1    42      2      0              1
+##  2 0              608         2      1    41      1  83808.             1
+##  3 1              502         1      1    42      8 159661.             3
+##  4 0              699         1      1    39      1      0              2
+##  5 0              850         2      1    43      2 125511.             1
+##  6 1              645         2      2    44      8 113756.             2
+##  7 0              822         1      2    50      7      0              2
+##  8 1              376         3      1    29      4 115047.             4
+##  9 0              501         1      2    44      4 142051.             2
+## 10 0              684         1      2    27      2 134604.             1
+## # ... with 9,990 more rows, and 3 more variables: HasCrCard &lt;int&gt;,
+## #   IsActiveMember &lt;int&gt;, EstimatedSalary &lt;dbl&gt;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Step 6:  Statistics - Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>Statistical Analysis gives list of &#39;Important and Not Important Variables</em></strong></li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Step 6:  Statistics - Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>You can plot the important variables</em></strong></li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Step 6:  Statistics.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.</li>
+<li><strong><em>Statistics can also indicate when the data available does not contain the information needed to accurately predict an answer.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Step 6:  Statistics.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.</li>
+<li>Statistics can also indicate when the data available does not contain the information needed to accurately predict an answer.</li>
+<li><strong><em>Determining the strength of the relationship between variables can uncover related variables that were not initially thought to be related.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Step 6:  Statistics.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.</li>
+<li>Statistics can also indicate when the data available does not contain the information needed to accurately predict an answer.</li>
+<li>Determining the strength of the relationship between variables can uncover related variables that were not initially thought to be related.</li>
+<li><strong><em>In many cases the Data Scientist uses the relationship between variables to &quot;predict&quot; an outcome - the best predictive algorithms typically involve a combination of variables and can include creating new variables from combinations of the original variables.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Step 7:  AI/DeepLearning/Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>At a recent Data Science Convention, a speaker stated that when computers were first used to play Chess,  it was considered to be AI - but now a computer chess game is just considered a program.    Data Scientists currently consider a program to be AI when the programmer does specify variables to be considered but lets the program determine it&#39;s own variables.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Step 7:  AI/DeepLearning/Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>At a recent Data Science Convention, a speaker stated that when computers were first used to play Chess,  it was considered to be AI - but now a computer chess game is just considered a program.    Data Scientists currently consider a program to be AI when the programmer does specify variables to be considered but lets the program determine it&#39;s own variables.</li>
+<li><strong><em>An example is Photo recognition software,  when the programmer does not tell the computer what characteristics to look for but just gives the computer a number of identified photos and allows the computer to train itself - this is an example of AI.   Artificial Neural Networks are typically predictive algorithms that share some similarities to how a human brain works - they take a lot of processing power.</em></strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Step 1:  Form of Data'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Step 1:  Form of Data'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Step 1:  Form of Data'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Step 1:  Form of Data'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Step 1:  Form of Data Example'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Step 2: Initial Data Prep'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Step 2: Initial Data Prep'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Step 2: Initial Data Prep - eliminating redundant variables'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Step 2: Initial Data Prep - eliminating redundant variables cont.'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Step 2: Initial Data Prep - Plot Example'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Step 2: Initial Data Prep - Example of stats'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Step 2: Initial Data Prep - Another example of stats'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Step 3:  Questions/Goals'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Step 3:  Questions/Goals'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Step 3:  Questions/Goals'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Step 3:  Questions/Goals'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Step 4: What to expect'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Step 4: What to Expect'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Step 4: What to Expect - create new variables'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Step 5:  Report type.'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Step 5:  Report type.'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Step 5:  Report type.'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Step 6:  Statistics.'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Step 6:  Statistics - Example'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Step 6:  Statistics - Example'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Step 6:  Statistics - Example'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Step 6:  Statistics.'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Step 6:  Statistics.'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Step 6:  Statistics.'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Step 7:  AI/DeepLearning/Neural Networks'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Step 7:  AI/DeepLearning/Neural Networks'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='NA'>
+         33
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

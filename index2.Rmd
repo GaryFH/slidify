@@ -1,0 +1,528 @@
+---
+title       : DataScienceOverview
+#subtitle    : 
+author      : GaryFH
+job         : Presentation
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+
+
+---
+
+```{r, message=FALSE,echo=FALSE,warning=FALSE}
+library(dplyr)
+library(devtools)
+library(knitr)
+library(slidify)
+library(ggplot2)
+
+```
+
+<style>
+strong {
+  font-weight: bold;
+}
+</style>
+  
+<style>
+em {
+  font-style: italic
+}
+</style>
+
+
+## Step 1:  Form of Data
+
+-  ***Data Science is most effectively used for data sets that have a number of identifiable "Observations" where each observation share the same parameters/columns.***
+
+---
+
+## Step 1:  Form of Data
+
+-  Data Science is most effectively used for data sets that have a number of identifiable "Observations" or "Subjects" where each observation/subject shares  a number of common "data points".
+
+-  ***An ideal form for such data is a spreadsheet with the rows being the individual observations and the columns the common data points.***
+
+---
+
+
+## Step 1:  Form of Data
+
+-  ***An ideal form for such data is a spreadsheet with the rows being individual observations/subjects and the columns the common data points.   - The following is an example***
+
+
+```{r, fig.height = 6.5, fig.width = 12, fig.align = 'center', echo=FALSE}
+head(ggplot2::diamonds[1:7],8)
+
+```
+
+---
+
+
+## Step 1:  Form of Data
+
+-  ***The Data Scientist refers to  the rows as "Observations" and the columns as "Variables".***  
+If you wanted to investigate what influences "price" - then the ***price*** variable would be the ***dependent*** variable and the other variables would be known as ***predictors/independent*** variables.
+
+```{r,fig.align = 'center', echo=FALSE}
+gridExtra::grid.table(head(ggplot2::diamonds[1:7],12))
+
+```
+
+---
+
+## Step 1:  Form of Data
+
+
+-  ***No matter how the data begins - it is important that it is eventually converted into the "spreadsheet" like format.***
+
+
+```{r, fig.align = 'center', echo=FALSE}
+gridExtra::grid.table(head(ggplot2::diamonds[1:7],12))
+
+```
+
+
+---
+
+## Step 1:  Form of Data Example
+
+
+```{r,fig.height = 6.5, fig.width = 12, fig.align = 'center', echo=FALSE}
+ggplot2::diamonds[1:7]
+
+```
+
+
+---
+
+## Step 2: Initial Data Prep
+
+- Effective use of Data Science requires close cooperation between the "Subject Experts" (often considered the clients of the Data Scientist) and the Data Scientist.
+- ***Note new variables x, y and z - As an example: Subject experts know that the depth variable is calculated from x,y&z***
+
+
+```{r,fig.height = 4.0, fig.width = 12, fig.align = 'center', echo=FALSE}
+gridExtra::grid.table(head(ggplot2::diamonds,12))
+
+```
+
+
+---
+
+## Step 2: Initial Data Prep
+
+- ***Subject Experts should carefully consider the variables and be prepared to discuss eliminating redundant columns.***
+
+
+```{r,fig.height = 4, fig.width = 12, fig.align = 'center', echo=FALSE}
+gridExtra::grid.table(head(ggplot2::diamonds,12))
+
+```
+
+---
+
+## Step 2: Initial Data Prep - eliminating redundant variables
+
+
+- Running custom code gives a table showing correlation between depth and x,y&z
+
+
+```{r,fig.height = 3.5, fig.width = 12, fig.align = 'center',echo=FALSE}
+gh <- function(xx, d=5) sprintf(paste0("%1.",d,"f"), xx) 
+library(dplyr)
+df<-ggplot2::diamonds
+df<-dplyr::select(df,depth,x,y,z)
+
+# # df<-dfb
+    tt2<-data.frame()[1:(ncol(df)-1),]
+   
+
+    for (i in 1:ncol(df))  {
+
+      tt<-as.data.frame(stats::cor(df[,-i],df[,i]))
+      tt[paste("Var",i,sep="")]<-rownames(tt)
+      tt[1]<-as.data.frame(apply(tt[1],2,gh))
+      tt[1]<-as.numeric(as.character(tt[[1]]))
+      tt[2]<-as.factor(as.character(tt[[2]]))
+      tt[1]<-sort(abs(tt[[1]]),decreasing = TRUE)
+      tt<-tt
+      tt2<-cbind(tt2,tt)
+    }
+   
+   
+    gfh<-dplyr::tbl_df(tt2)
+    gridExtra::grid.table(gfh[,-c(1:2)],rows=NULL)
+    
+
+```
+
+---
+
+## Step 2: Initial Data Prep - eliminating redundant variables cont.
+
+Since x,y&z were shown to be highly correlated to depth - they are removed from the dataframe.   We look at the other potential variables to see if strong correlations exist. Note the correlations are relativel low - therefore all these variables are not removed.
+
+
+```{r,fig.height = 4.5, fig.width = 12, fig.align = 'center',echo=FALSE}
+library(dplyr)
+df<-ggplot2::diamonds
+df<-df[1:6]
+df$cut<-as.numeric(df$cut)
+df$color<-as.numeric(df$color)
+df$clarity<-as.numeric(df$clarity)
+gh <- function(x, d=2) sprintf(paste0("%1.",d,"f"), x) 
+# df<-dfb
+    tt2<-data.frame()[1:(ncol(df)-1),]
+
+    for (i in 1:ncol(df))  {
+
+      tt<-as.data.frame(cor(df[-i],df[i]))
+      tt[paste("Var",i,sep="")]<-rownames(tt)
+      tt[1]<-as.data.frame(apply(tt[1],2,gh))
+      tt[1]<-as.numeric(as.character(tt[[1]]))
+      tt[2]<-as.factor(as.character(tt[[2]]))
+      tt[1]<-sort(abs(tt[[1]]),decreasing = TRUE)
+      tt<-tt
+      tt2<-cbind(tt2,tt)
+    }
+    gfh<-tbl_df(tt2)
+    gridExtra::grid.table(gfh,rows=NULL)
+    
+
+```
+
+---
+
+## Step 2: Initial Data Prep - Plot Example
+
+
+```{r, fig.height = 4.0, fig.width = 8, fig.align = 'center', message=FALSE,echo=FALSE}
+
+plot(x=ggplot2::diamonds$carat,y=ggplot2::diamonds$price)
+
+abline(lm(price ~ carat, data = ggplot2::diamonds), col = "red")
+
+aa<-sample_n(ggplot2::diamonds,1000)
+
+plot(x=aa$carat,y=aa$price)
+
+abline(lm(price ~ carat, data = aa), col = "red")
+
+
+
+```
+
+---
+
+## Step 2: Initial Data Prep - Example of stats
+
+
+```{r, fig.height = 4.0, fig.width = 8, fig.align = 'center', message=FALSE,echo=FALSE}
+
+ df<-ggplot2::diamonds
+  df<-df[1:7]
+  df$cut<-as.numeric(df$cut)
+  df$color<-as.numeric(df$color)
+  df$clarity<-as.numeric(df$clarity)
+  df$price<-as.numeric(df$price)
+  df<-dplyr::select(df,price,dplyr::everything())
+  df<-na.omit(df)
+  df<-df[stats::complete.cases(df),]
+  
+    train<-dplyr::sample_n(df,.7*nrow(df))
+    test<-dplyr::setdiff(df,train)
+
+gh <- function(x, d=2) sprintf(paste0("%1.",d,"f"), x) 
+
+fit<-lm(price ~ carat, data = train)
+
+aa<-summary(fit)
+print(paste("The AdjustRsq using only the carat variable is:",gh(aa$adj.r.squared)))
+
+fitall2<-lm(price ~ ., data = train)
+
+aa2<-summary(fitall2)
+print(paste("The AdjustRsq using all variables is:",gh(aa2$adj.r.squared)))
+
+# 
+#   fitbase<-lm(price~1,train)
+#   fitall<-lm(price~carat*cut*color*clarity*depth*table,data=train)
+#     
+# fitbest<-step(fitbase, scope = list(lower=fitbase,upper=fitall),
+#                 direction = "both",trace=1,steps=1000)
+    fitbest<-readRDS("fitbest.rds")
+
+    aa3<-summary(fitbest)
+    
+print(paste("The AdjustRsq using bestfit variables is:",gh(aa3$adj.r.squared))) 
+
+aa3$call[[2]]
+
+
+
+
+
+
+```
+
+---
+
+
+## Step 2: Initial Data Prep - Another example of stats
+
+
+```{r, fig.height = 4.0, fig.width = 8, fig.align = 'center', message=FALSE,echo=FALSE}
+
+ df<-ggplot2::diamonds
+  df<-df[1:7]
+  df$cut<-as.numeric(df$cut)
+  df$color<-as.numeric(df$color)
+  df$clarity<-as.numeric(df$clarity)
+  df$price<-as.numeric(df$price)
+  df<-dplyr::select(df,price,dplyr::everything())
+  df<-na.omit(df)
+  df<-df[stats::complete.cases(df),]
+  
+    train<-dplyr::sample_n(df,.7*nrow(df))
+    test<-dplyr::setdiff(df,train)
+
+gh <- function(x, d=2) sprintf(paste0("%1.",d,"f"), x) 
+
+fit<-lm(price ~ carat, data = train)
+pred<-predict(fit,newdata=test)
+
+fitall2<-lm(price ~ ., data = train)
+predAll<-predict(fitall2,newdata=test)
+
+fitbest<-readRDS("fitbest.rds")
+predbest<-predict(fitbest,newdata = test)
+
+a1<-Metrics:: mae(pred,test[[1]])
+a2<-Metrics:: mae(predAll,test[[1]])
+a3<-Metrics:: mae(predbest,test[[1]])
+
+print(paste("The Mean Absolute Error for carat only variable is:",gh(a1)))
+print(paste("The Mean Absolute Error for all variables is:",gh(a2)))
+print(paste("The Mean Absolute Error for fitbest variables is:",gh(a3)))
+
+
+
+```
+
+---
+
+
+## Step 3:  Questions/Goals
+
+- ***The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.*** 
+
+---
+
+
+## Step 3:  Questions/Goals
+
+
+- The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.  
+- ***It is true that the data dictates which questions can be answered and to what degree of certainty,   however knowing where to start can save a lot of time.*** 
+
+---
+
+
+## Step 3:  Questions/Goals
+
+
+- The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.  
+- It is true that the data dictates which questions can be answered and to what degree of certainty,   however knowing where to start can save a lot of time. 
+- ***Note that the data science process often produces better questions than initially envisioned and some Data Science is pursued without initially having any specific questions in mind in an attempt to see what the data might reveal.***
+   
+
+---
+
+
+## Step 3:  Questions/Goals
+
+
+- The process of answering questions is the main purpose of Data Science.   This is perhaps the most important step.   It can also be the most difficult step.  
+- It is true that the data dictates which questions can be answered and to what degree of certainty,   however knowing where to start can save a lot of time. 
+- Note that the data science process often produces better questions than initially envisioned and some Data Science is pursued without initially having any specific questions in mind in an attempt to see what the data might reveal.    
+- ***Initial questions are often general in nature and subject to modification as data is looked at.    Examples of questions could include: "what is causing the errors?" or "which firmware performs best?" or "how does the performance change overtime?.***  
+
+---
+
+## Step 4: What to expect
+
+https://garyfh.shinyapps.io/squelch20e/
+
+
+---
+
+
+## Step 4: What to Expect 
+
+
+```{r,fig.height = 4.5, fig.width = 12, fig.align = 'center', echo=FALSE}
+aa<-readRDS("ddd2b.rds")
+aa
+
+```
+
+
+---
+
+## Step 4: What to Expect - create new variables
+
+
+```{r,echo=FALSE}
+#gfh9<-readRDS("gfh9.rds")
+ddd2b<-readRDS("ddd2b.rds")
+aa<-dplyr::filter(ddd2b,ID=="38815")  #id=38815
+print(paste("Variable called Upstream.lane.0 = ",as.character(aa$Upstream.lane.0)))
+library(stringr)
+
+uplane0a=str_sub(aa$Upstream.lane.0,5,6)
+uplane0a=strtoi(uplane0a,base=16)
+uplane0b=str_sub(aa$Upstream.lane.0,7,8)
+uplane0b=strtoi(uplane0b,base=16)
+uplane0c=str_sub(aa$Upstream.lane.0,9,10)
+uplane0c=strtoi(uplane0c,base=16)
+
+print(paste("5th&6th elements converted to dec - uplane0a= ",uplane0a,sep = ""))
+print(paste("7th&8th elements converted to dec - uplane0b= ",uplane0b,sep = ""))
+print(paste("9th&10th elements converted to dec - uplane0c= ",uplane0c,sep = ''))
+
+
+```
+
+
+---
+
+## Step 5:  Report type.
+
+- ***During the process of working with the data,  numerous reports will be available - initially these are "working" documents whose purpose is to guide the team toward their goals.    The Data Scientist should maintain these reports and avoid writing over previous reports so that prior reports are always available.***   
+
+---
+
+## Step 5:  Report type.
+
+- During the process of working with the data,  numerous reports will be available - initially these are "working" documents whose purpose is to guide the team toward their goals.    The Data Scientist should maintain these reports and avoid writing over previous reports so that prior reports are always available.   
+- ***The need to provide interested parties with the ability to closely examine the data as the process unfolds often results in reports that are layered from overview charts down to detailed tables/plots.  Rarely does one chart/plot/table exist that provides what is needed exist.   Different report users will have multiple questions they want to investigate - thus "one size" does not fit all.***
+
+---
+
+## Step 5:  Report type.
+
+- During the process of working with the data,  numerous reports will be available - initially these are "working" documents whose purpose is to guide the team toward their goals.    The Data Scientist should maintain these reports and avoid writing over previous reports so that prior reports are always available.   
+
+- The need to provide interested parties with the ability to closely examine the data as the process unfolds often results in reports that are layered from overview charts down to detailed tables/plots.  Rarely does one chart/plot/table exist that provides what is needed exist.   Different report users will have multiple questions they want to investigate - thus "one size" does not fit all.
+
+- ***Publishing reports so that the team members can interact with the data and look at as much detail as they desire is important.   Thus,  interactive graphs/tables/plots are important.***
+
+---
+
+## Step 6:  Statistics.
+
+- ***The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.***
+
+
+---
+
+## Step 6:  Statistics - Example
+
+- ***Lets look at a dataset of bank customers with the goal of finding out why customers leave the bank***
+
+```{r, echo=FALSE}
+d2a<-readRDS("d2a.rds")
+d2a
+
+```
+
+---
+
+## Step 6:  Statistics - Example
+
+- ***Statistical Analysis gives list of 'Important and Not Important Variables***
+
+```{r, fig.height = 4.5, fig.width = 12, fig.align = 'center',echo=FALSE, message=FALSE,warning=FALSE}
+gfh5<-readRDS("gfh5.rds")
+a1<-as.data.frame(c("All Variables",  unique(dplyr::filter(gfh5,Variables=="AllVariables"))))
+a1<-a1[2]
+names(a1)<-"All_Variables"
+a1$id<-rownames(a1)
+
+a2<-as.data.frame(c("Important Variable",  unique(dplyr::filter(gfh5,Variables=="Important"))))
+a2<-a2[2]
+names(a2)<-"Important_Variables"
+a2$id<-rownames(a2)
+
+a3<-as.data.frame(c("Important Variable",  unique(dplyr::filter(gfh5,Variables=="NotImportant"))))
+a3<-a3[2]
+names(a3)<-"Not_Important"
+a3$id<-rownames(a3)
+
+a4<-dplyr::full_join(a1,a2,by="id")
+a4<-dplyr::full_join(a4,a3,by="id")
+a4<-dplyr::tbl_df(a4[-2])
+gridExtra::grid.table(a4,rows=NULL)
+
+```
+
+---
+
+## Step 6:  Statistics - Example
+
+- ***You can plot the important variables***
+
+```{r,fig.height = 4.5, fig.width = 12, fig.align = 'center', echo=FALSE, message=FALSE,warning=FALSE}
+library(Boruta)
+baFit<-readRDS("baFit.rds")
+plot(baFit,cex.axis=.7,las=2)
+
+```
+
+---
+
+
+## Step 6:  Statistics.
+
+- The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.
+- ***Statistics can also indicate when the data available does not contain the information needed to accurately predict an answer.***
+
+
+---
+
+## Step 6:  Statistics.
+
+- The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.
+- Statistics can also indicate when the data available does not contain the information needed to accurately predict an answer.
+- ***Determining the strength of the relationship between variables can uncover related variables that were not initially thought to be related.***
+
+---
+
+## Step 6:  Statistics.
+
+- The Data Scientist uses statistical analysis to measure the strength of the relationship between variables - this can be used to remove redundant or weak variables.
+- Statistics can also indicate when the data available does not contain the information needed to accurately predict an answer.
+- Determining the strength of the relationship between variables can uncover related variables that were not initially thought to be related.
+- ***In many cases the Data Scientist uses the relationship between variables to "predict" an outcome - the best predictive algorithms typically involve a combination of variables and can include creating new variables from combinations of the original variables.***
+
+---
+
+## Step 7:  AI/DeepLearning/Neural Networks
+
+- ***At a recent Data Science Convention, a speaker stated that when computers were first used to play Chess,  it was considered to be AI - but now a computer chess game is just considered a program.    Data Scientists currently consider a program to be AI when the programmer does specify variables to be considered but lets the program determine it's own variables.***
+
+---
+
+## Step 7:  AI/DeepLearning/Neural Networks
+
+- At a recent Data Science Convention, a speaker stated that when computers were first used to play Chess,  it was considered to be AI - but now a computer chess game is just considered a program.    Data Scientists currently consider a program to be AI when the programmer does specify variables to be considered but lets the program determine it's own variables.
+- ***An example is Photo recognition software,  when the programmer does not tell the computer what characteristics to look for but just gives the computer a number of identified photos and allows the computer to train itself - this is an example of AI.   Artificial Neural Networks are typically predictive algorithms that share some similarities to how a human brain works - they take a lot of processing power.***
+
+---
+
+

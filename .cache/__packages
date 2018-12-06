@@ -1,0 +1,10 @@
+base
+dplyr
+devtools
+knitr
+slidify
+ggplot2
+bindrcpp
+stringr
+ranger
+Boruta
